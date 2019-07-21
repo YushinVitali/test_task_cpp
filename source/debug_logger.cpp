@@ -30,15 +30,15 @@ namespace stxDebug {
 
 	template<>
 	struct GetDbgStringT<Data> {
-  	static std::wstring GetDbgString(const Data& data) {
-    	return L"{class: 'Data, object: { num: '" +	to_wstring(data.num) 
+		static std::wstring GetDbgString(const Data& data) {
+			return L"{class: 'Data, object: { num: '" +	to_wstring(data.num) 
 				+ L"\', text: \'" + data.text + L"\' } }";
-  	}
+		}
 	};
 
 	struct StdFileWrite {
 		void operator()(const std::wstring& msg) {
-    	std::wstring wfname = msg.substr(0, msg.find_first_of(L' '));
+			std::wstring wfname = msg.substr(0, msg.find_first_of(L' '));
 			const_cast<std::wstring&>(msg) = msg.substr(msg.find_first_of(L' ') + 1);
 			
 			char* fname = new char[wfname.length() + 1];
@@ -63,13 +63,13 @@ namespace stxDebug {
 
 
 int main(int argc, const char* argv[]) {
-  cout << "stx C++ test task" << endl;
+	cout << "stx C++ test task" << endl;
 
-  stxDebug::Out() << L"wide text" << std::wstring(L" - std::wstring") << " - ascii text" << std::string(" - std::string");
-  stxDebug::Err() << L"wide text" << std::wstring(L" - std::wstring") << " - ascii text" << std::string(" - std::string");
+	stxDebug::Out() << L"wide text" << std::wstring(L" - std::wstring") << " - ascii text" << std::string(" - std::string");
+	stxDebug::Err() << L"wide text" << std::wstring(L" - std::wstring") << " - ascii text" << std::string(" - std::string");
 
-  // stx: task is to uncomment and revive this line
-  stxDebug::File(L"dump.txt") << L"Dump: " << Data(55, "stx data");
+  	// stx: task is to uncomment and revive this line
+	stxDebug::File(L"dump.txt") << L"Dump: " << Data(55, "stx data");
 
 	getchar();
 
