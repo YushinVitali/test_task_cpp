@@ -53,7 +53,7 @@ namespace stxDebug {
 			}
 
 			delete[] fname;
-  	}
+		}
 	};
 
 	stxDebug::DebugLogger<StdFileWrite> File(const std::wstring& fname) {

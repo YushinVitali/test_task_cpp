@@ -14,13 +14,13 @@ struct GetDbgStringT;
 template<typename T>
 std::wstring GetDbgString(const T& t)
 {
-  return GetDbgStringT<T>::GetDbgString(t);
+	return GetDbgStringT<T>::GetDbgString(t);
 }
 
 template<typename T>
 struct GetDbgString_Trivial
 {
-  static std::wstring GetDbgString(const T& t) { return t; }
+	static std::wstring GetDbgString(const T& t) { return t; }
 };
 
 template<>
