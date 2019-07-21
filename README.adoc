@@ -1,0 +1,59 @@
+= C++ test task
+
+== Task description
+
+This is a test task for C++ intermediate developer.
+
+We have small project with two files:
+
+* `debug_logger.h` - contains simple implementation of `stxDebug` library.
+* `debug_logger.cpp` -  uses library and contains `main` function.
+
+Example of `stxDebug` library usage:
+
+[source,cpp]
+.debug_logger.cpp
+----
+stxDebug::Out() << L"wide text" << std::wstring(L" - std::wstring")      # <1>
+  << " - ascii text" << std::string(" - std::string");
+stxDebug::Err() << L"wide text" << std::wstring(L" - std::wstring")      # <2>
+  << " - ascii text" << std::string(" - std::string");
+----
+<1> - send output to std::out stream
+<2> - send output to std::err stream
+
+*The aim of this task is to make working the following line of code:*
+[source,cpp,numbered]
+.debug_logger.cpp
+----
+// stx: task is to uncomment and revive this line
+// stxDebug::File(L"dump.txt") << L"Dump: " << Data(55, "stx data");
+----
+
+This task consists of two parts:
+
+. To implement possibility to write debug information into file (`stxDebug::File`).
+. To implement serialization of objects of `Data` class.
+
+== Compilation and running
+
+For compilation you can use `g++` compiler (linux version):
+[source, bash]
+----
+$ g++ -o debug_logger debug_logger.cpp
+----
+Start application:
+[source, bash]
+----
+$ ./debug_logger
+stx C++ test task
+[out]: wide text - std::wstring - ascii text - std::string
+[err]: wide text - std::wstring - ascii text - std::string
+
+$ cat dump.txt                                                           # <1>
+Dump: { class: 'Data', object: { num: 55, text: 'stx data' } }           # <2>
+----
+<1> file `dump.txt` was created from application
+<2> expected serialization of Dump object in JSON-like format
+
+*Tags*: `c++`, `template`, `partial specialization`
